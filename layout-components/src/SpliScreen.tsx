@@ -5,20 +5,25 @@ const Container = styled.div`
   display: flex;
 `;
 
-const Pane = styled.div`
-  flex: 1;
+const Pane = styled.div<{ weight?: number }>`
+  flex: ${props => props.weight || 1};
 `;
 
 type Props = {
-  left: ReactNode;
-  right: ReactNode;
-};
+  children: {
+    left: ReactNode;
+    right: ReactNode;
+  };
+} & Partial<{
+  leftWeight: number;
+  rightWeight: number;
+}>;
 
-function SpliScreen({ left, right }: Props) {
+function SpliScreen({ children, leftWeight = 1, rightWeight = 1 }: Props) {
   return (
     <Container>
-      <Pane>{left}</Pane>
-      <Pane>{right}</Pane>
+      <Pane weight={leftWeight}>{children.left}</Pane>
+      <Pane weight={rightWeight}>{children.right}</Pane>
     </Container>
   );
 }

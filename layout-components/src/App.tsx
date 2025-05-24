@@ -9,7 +9,14 @@ const Right = () => {
 };
 
 function App() {
-  return <SpliScreen left={<Left />} right={<Right />} />;
+  return (
+    <SpliScreen leftWeight={1} rightWeight={5}>
+      {{
+        left: <Left />,
+        right: <Right />,
+      }}
+    </SpliScreen>
+  );
 }
 
 export default App;
